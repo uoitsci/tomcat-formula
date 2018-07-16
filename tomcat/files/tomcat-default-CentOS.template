@@ -86,3 +86,4 @@ SECURITY_MANAGER="false"
 # put your own definitions here
 # (i.e. LD_LIBRARY_PATH for some jdbc drivers)
 
+DISPLAY=:1
