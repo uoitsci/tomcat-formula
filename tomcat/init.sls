@@ -13,6 +13,7 @@ tomcat:
     - require_in: tomcat.file.managed
   cmd.run:
     - name: brew unlink tomcat && brew link tomcat
+    - runas: {{ tomcat.user }}
     - unless: test -f /usr/local/opt/tomcat/{{ tomcat.service }}.plist
   file.managed:
     - name: /Library/LaunchAgents/{{ tomcat.service }}.plist
@@ -38,4 +39,10 @@ haveged:
     - watch:
        - pkg: haveged
 {% endif %}
+
+tomcat init whats tomcat status:
+  cmd.run:
+  - name: systemctl status tomcat8.service
+  - onfail:
+    - service: tomcat
 
